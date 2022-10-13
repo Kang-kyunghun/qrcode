@@ -62,17 +62,38 @@ const codesProxy = new Proxy(codes, {
 const video = document.getElementById('video');
 
 // Check for a camera
-if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-  const constraints = {
-    video: true,
-    audio: false,
-  };
 
-  // Start video stream
-  navigator.mediaDevices
-    .getUserMedia(constraints)
-    .then((stream) => (video.srcObject = stream));
+if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+  console.log("Let's get this party started");
 }
+
+const constraints = {
+  video: true,
+  audio: false,
+};
+
+const startStream = async (constraints) => {
+  const stream = await navigator.mediaDevices.getUserMedia(constraints);
+  handleStream(stream);
+};
+
+const handleStream = (stream) => {
+  video.srcObject = stream;
+};
+
+startStream(constraints);
+
+// if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+//   const constraints = {
+//     video: true,
+//     audio: false,
+//   };
+
+//   // Start video stream
+//   navigator.mediaDevices
+//     .getUserMedia(constraints)
+//     .then((stream) => (video.srcObject = stream));
+// }
 
 // Draw outline to canvas
 /* --NOTE-- 
