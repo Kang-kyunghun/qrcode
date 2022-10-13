@@ -1,10 +1,15 @@
 import json
-from xml.dom.minidom import NamedNodeMap
 
+from django.shortcuts import render
 from django.http import JsonResponse
 from django.views import View
 
 from users.models import User
+
+class QRCodeView(View):
+    def get(self, request):
+        qr_code_url = {"url" : "https://jack-file-storage.s3.ap-northeast-2.amazonaws.com/qrcode/71cb3949-5b68-4ad5-8b73-cb70334fcb1c"}
+        return render(request, 'qrcode/index.html', qr_code_url)
 
 
 class UserView(View):
