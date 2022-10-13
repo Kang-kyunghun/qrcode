@@ -65,6 +65,7 @@ const video = document.getElementById('video');
 
 if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
   console.log("Let's get this party started");
+  navigator.mediaDevices.enumerateDevices();
 }
 
 const constraints = {
