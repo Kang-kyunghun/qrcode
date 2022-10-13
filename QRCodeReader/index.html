@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>QR Code Scanner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100%;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .wrapper {
+        /* padding: 0 4rem; */
+        text-align: center;
+      }
+      #canvas {
+        position: absolute;
+      }
+      #scanned {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      #video-wrapper {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <template id="scaned-item">
+      <style>
+        .wrapper {
+          --gradient-start: #c471ed;
+          --gradient-end: #f7797d;
+          border: none;
+          border-radius: 1rem;
+          padding: 1rem;
+          background: linear-gradient(
+            var(--gradient-start),
+            var(--gradient-end)
+          );
+          box-shadow: 0 3px -3px 10px #000;
+        }
+        .wrapper span {
+          font-family: Arial, Helvetica, sans-serif;
+          color: white;
+          display: block;
+        }
+      </style>
+      <div class="wrapper">
+        <span>Value: <slot name="raw"></slot></span>
+        <span>Format: <slot name="format"></slot></span>
+      </div>
+    </template>
+
+    <div class="wrapper">
+      <h1>개발자 커리어 전환,</h1>
+      <h1>누구나 할 수 있습니다.</h1>
+      <div
+        style="
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <div id="video-wrapper">
+          <canvas id="canvas" width="300" height="300"></canvas>
+          <video id="video" width="300" height="300" autoplay></video>
+        </div>
+        <!-- <div>
+          <h1>Recently Scanned</h1>
+          <div id="scanned"></div>
+        </div> -->
+      </div>
+      <h2>>wecode</h2>
+    </div>
+    <script src="./main.js" async></script>
+  </body>
+</html>
