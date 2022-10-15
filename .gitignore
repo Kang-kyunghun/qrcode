@@ -4,6 +4,8 @@
 ### manual ##
 my_settings.py
 attendent_QR/
+*.csv
+upload.py
 
 ### Linux ###
 *~

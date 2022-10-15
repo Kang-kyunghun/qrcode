@@ -171,7 +171,7 @@ const detectCode = () => {
         // drawCodePath(barcode);
 
         if (barcode.rawValue) {
-          fetch('http://localhost:8000/users', {
+          fetch('http://localhost:8001/attendents', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: barcode.rawValue }),
@@ -179,10 +179,11 @@ const detectCode = () => {
             .then((res) => res.json())
             .then((res) => {
               console.log(res);
-              if (res) {
-                //
+              const status = res.status;
+              if (status === 200) {
+                alert(res.smessasge.name);
               } else {
-                alert('Error!');
+                alert(res.messasge);
               }
             });
         }
